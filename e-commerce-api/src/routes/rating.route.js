@@ -4,7 +4,10 @@ const router = express.Router();
 const ratingController = require("../controller/rating.controller.js");
 const authenticate = require("../middleware/authenticate.js");
 
+// Corrected the route definition for PUT
+router.put("/product/:productId", authenticate, ratingController.getAllRating);
+
+// Add a callback function for the POST route
 router.post("/create", authenticate, ratingController.createRating);
-router.put("/product/:productId", authenticate, ratingController.getAllRatings);
 
 module.exports = router;

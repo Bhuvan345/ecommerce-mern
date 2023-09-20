@@ -589,7 +589,7 @@ export default function Navigation() {
           </div>
         </nav>
       </header>
-      <AuthModel handleClose={handleClose} open={openAuthModal}/>
+      <AuthModel handleClose={handleClose} open={openAuthModal} />
     </div>
   );
 }

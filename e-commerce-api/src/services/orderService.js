@@ -1,5 +1,6 @@
 const Address = require("../models/address.model.js");
 const Order = require("../models/order.model.js");
+const OrderItem = require("../models/orderItems.js");
 const cartService = require("../services/cart.service.js");
 
 async function createOrder(user, shipAddress) {
@@ -13,7 +14,7 @@ async function createOrder(user, shipAddress) {
     address.user = user;
     await address.save();
 
-    user.addresses.push(address); //puhs(address);
+    user.address.push(address); //puhs(address);
     await user.save();
   }
 
@@ -21,7 +22,7 @@ async function createOrder(user, shipAddress) {
   const orderItems = [];
 
   for (const item of cart.cartItems) {
-    const orderItems = new orderItems({
+    const orderItem = new OrderItem({
       price: item.price,
       product: item.product,
       quantity: item.quantity,
@@ -34,7 +35,7 @@ async function createOrder(user, shipAddress) {
     orderItems.push(createdOrderItem);
   }
 
-  const createdOrderItem = new orderItems({
+  const createdOrder = new Order({
     user,
     orderItems,
     totalPrice: cart.totalPrice,
@@ -43,7 +44,7 @@ async function createOrder(user, shipAddress) {
     totalItem: cart.totalItem,
     shipAddress: address,
   });
-  const savedOrder = await createOrder.save();
+  const savedOrder = await createdOrder.save();
 
   return savedOrder;
 }
@@ -84,7 +85,7 @@ async function deliverOrder(orderId) {
 async function cancelledOrder(orderId) {
   const order = await findOrderById(orderId);
 
-  order.orderStatus = "CANCLLED";
+  order.orderStatus = "CANCELLED";
 
   return await order.save();
 }
@@ -130,5 +131,4 @@ module.exports = {
   findOrderById,
   usersOrderHistory,
   getAllOrders,
-  deleteOrder,
 };

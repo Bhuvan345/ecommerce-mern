@@ -20,7 +20,7 @@ const userRouters = require("./routes/user.route.js");
 app.use("/users", userRouters);
 
 const productRouter = require("./routes/product.route.js");
-app.use("/api/produts", productRouter);
+app.use("/api/products", productRouter);
 
 const adminProductRouter = require("./routes/AdminProduct.route.js");
 app.use("/api/admin/products", adminProductRouter);

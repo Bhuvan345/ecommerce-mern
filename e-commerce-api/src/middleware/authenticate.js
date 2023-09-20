@@ -9,13 +9,16 @@ const authenticate = async (req, res, next) => {
     }
 
     const userId = jwtProvider.getUserIdFromToken(token);
-    const user = userService.findUserById(userId);
+    // console.log("Token:", token);
+    const user = await userService.findUserById(userId);
+    // console.log("User ID:", userId);
 
     req.user = user;
+    // console.log(this.toString(req));
+    next();
   } catch (error) {
     return res.status(500).send({ error: error.message });
   }
-  next();
 };
 
 module.exports = authenticate;

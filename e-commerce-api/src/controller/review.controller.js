@@ -1,6 +1,6 @@
-const reviewService = require("../services/raview.service.js");
+const reviewService = require("../services/review.service.js");
 
-const createReview = async (res, req) => {
+const createReview = async (req, res) => {
   const user = req.user;
   try {
     const review = await reviewService.createReview(req.body, user);
@@ -10,7 +10,7 @@ const createReview = async (res, req) => {
   }
 };
 
-const getAllReview = async (res, req) => {
+const getAllReview = async (req, res) => {
   const productId = req.params.productId;
   const user = req.user;
   try {
