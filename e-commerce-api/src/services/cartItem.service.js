@@ -30,6 +30,8 @@ async function removeCartItem(userId, cartItemId) {
   const cartItem = await findCartItemById(cartItemId);
   const user = await userService.findUserById(userId);
 
+  // console.log("Bhuvan cart" + user._id.toString());
+
   if (user._id.toString() === cartItem.userId.toString()) {
     return await CartItem.findByIdAndDelete(cartItemId);
   }
@@ -37,7 +39,9 @@ async function removeCartItem(userId, cartItemId) {
 }
 
 async function findCartItemById(cartItemId) {
-  const cartItem = await CartItem.findById(cartItemId);
+  console.log("Searching for cart item with ID:", cartItemId);
+
+  const cartItem = await CartItem.findById(cartItemId).populate("product");
   if (cartItem) {
     return cartItem;
   } else {
