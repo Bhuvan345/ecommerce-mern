@@ -113,14 +113,14 @@ async function getAllProducts(reqQuery) {
   }
   if (sizes) {
     const sizesSet = new Set(sizes);
-    query.query.where("sizes.name").in([...sizesSet]);
+    query = query.where("sizes.name").in([...sizesSet]);
   }
 
   if (minPrice && maxPrice) {
-    query = query.where("dicountedPrice").gte(minPrice).lte(maxPrice);
+    query = query.where("discountedPrice").gte(minPrice).lte(maxPrice);
   }
   if (minDiscount) {
-    query = query.where("discountPersent").gt(minDiscount);
+    query = query.where("discountPercent").gt(minDiscount);
   }
   if (stock) {
     if (stock == "in_stock") {
@@ -131,7 +131,7 @@ async function getAllProducts(reqQuery) {
   }
 
   if (sort) {
-    const sortDirection = sort === "price_hight" ? -1 : 1;
+    const sortDirection = sort === "price_high" ? -1 : 1;
     query = query.sort({ discountedPrice: sortDirection });
   }
   const totalProducts = await Product.countDocuments(query);

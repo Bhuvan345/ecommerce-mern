@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import AuthModel from "../../../Auth/AuthModel";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, logout } from "../../../State/Auth/Action";
+// import { navigation } from "./navigationData";
 
 const navigation = {
   categories: [
@@ -41,15 +42,13 @@ const navigation = {
           id: "clothing",
           name: "Clothing",
           items: [
-            { name: "Tops", href: "#" },
-            { name: "Dresses", href: "#" },
-            { name: "Pants", href: "#" },
-            { name: "Denim", href: "#" },
-            { name: "Sweaters", href: "#" },
-            { name: "T-Shirts", href: "#" },
-            { name: "Jackets", href: "#" },
-            { name: "Activewear", href: "#" },
-            { name: "Browse All", href: "#" },
+            { name: "Mens Kurtas", id: "mens_kurta" },
+            { name: "Shirt", id: "shirt" },
+            { name: "Men Jeans", id: "men_jeans" },
+            { name: "Sweaters", id: "#" },
+            { name: "T-Shirts", id: "t-shirt" },
+            { name: "Jackets", id: "#" },
+            { name: "Activewear", id: "#" },
           ],
         },
         {
@@ -103,13 +102,13 @@ const navigation = {
           id: "clothing",
           name: "Clothing",
           items: [
-            { name: "Tops", href: "#" },
-            { name: "Pants", href: "#" },
-            { name: "Sweaters", href: "#" },
-            { name: "T-Shirts", href: "#" },
-            { name: "Jackets", href: "#" },
-            { name: "Activewear", href: "#" },
-            { name: "Browse All", href: "#" },
+            { name: "Mens Kurtas", id: "mens_kurta" },
+            { name: "Shirt", id: "shirt" },
+            { name: "Men Jeans", id: "men_jeans" },
+            { name: "Sweaters", id: "#" },
+            { name: "T-Shirts", id: "t-shirt" },
+            { name: "Jackets", id: "#" },
+            { name: "Activewear", id: "#" },
           ],
         },
         {
@@ -399,7 +398,7 @@ export default function Navigation() {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                <a href="#">
+                <a href="/">
                   <span className="sr-only">Your Company</span>
                   <img
                     className="h-8 w-auto"
